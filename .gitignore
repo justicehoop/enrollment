@@ -1,0 +1,44 @@
+.gradle
+gradle.properties
+/gradle.properties
+
+**/build/
+**/logs/
+**/out/
+**/src/main/generated/
+**/dist/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### Node ###
+**/node_modules/
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+### upload-center
+.env

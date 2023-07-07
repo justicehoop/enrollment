@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.naver.jpa.enrollment.domain.Professor</OriginalElement>
+  <nodes>
+    <node x="455.50586578889875" y="152.79160801582742">com.naver.jpa.enrollment.domain.ForeignerProfessor</node>
+    <node x="-352.729751660301" y="-407.4601410286806">com.naver.jpa.enrollment.domain.Locker</node>
+    <node x="332.2968349218279" y="-138.70792013124884">com.naver.jpa.enrollment.domain.Professor</node>
+    <node x="-136.18074717677126" y="-295.46400037983113">com.naver.jpa.enrollment.domain.Subject</node>
+    <node x="-741.9446835675271" y="-377.4245492952654">com.naver.jpa.enrollment.domain.Student</node>
+    <node x="-138.97217025691498" y="-64.48199534985724">com.naver.jpa.enrollment.domain.Lecture</node>
+    <node x="170.29683492182787" y="152.79160801582742">com.naver.jpa.enrollment.domain.DomesticProfessor</node>
+    <node x="-396.0368327238002" y="-153.64866201652387">com.naver.jpa.enrollment.domain.Enrollment</node>
+    <node x="-396.0368327238002" y="-107.64866201652387">com.naver.jpa.enrollment.domain.Enrollment.EnrollmentKey</node>
+    <node x="812.888835183543" y="147.4582746824941">com.naver.jpa.enrollment.domain.Address</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.naver.jpa.enrollment.domain.DomesticProfessor" target="com.naver.jpa.enrollment.domain.Professor" relationship="GENERALIZATION">
+      <point x="4.984115055037819E-4" y="-26.00047981953287" />
+      <point x="293.2973333333334" y="46.0" />
+      <point x="404.79701768782047" y="46.0" />
+      <point x="1.8276599256239479E-4" y="80.99972531750595" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.Enrollment.EnrollmentKey" target="com.naver.jpa.enrollment.domain.Lecture" relationship="TO_ONE">
+      <point x="107.99999999999993" y="16.710757132412624" />
+      <point x="-305.33333333333326" y="-53.93790488411125" />
+      <point x="-305.33333333333326" y="3.728761782555381" />
+      <point x="-210.48279816504487" y="3.728761782555381" />
+      <point x="-210.48279816504487" y="38.51800465014276" />
+      <point x="-98.0" y="0.0" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.ForeignerProfessor" target="com.naver.jpa.enrollment.domain.Professor" relationship="GENERALIZATION">
+      <point x="2.160800877767997" y="-58.79160801582742" />
+      <point x="552.6666666666667" y="46.0" />
+      <point x="404.79701768782047" y="46.0" />
+      <point x="1.8276599256239479E-4" y="80.99972531750595" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.Student" target="com.naver.jpa.enrollment.domain.Locker" relationship="TO_ONE">
+      <point x="11.71493190722606" y="-92.0" />
+      <point x="-621.7297516603011" y="-276.442345161973" />
+      <point x="-286.729751660301" y="-276.442345161973" />
+      <point x="0.0" y="48.0" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.Enrollment.EnrollmentKey" target="com.naver.jpa.enrollment.domain.Enrollment" relationship="INNER_CLASS">
+      <point x="-107.99999999999993" y="0.0" />
+      <point x="-288.0368327238002" y="-70.64866201652387" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.Student" target="com.naver.jpa.enrollment.domain.Enrollment" relationship="TO_MANY">
+      <point x="-108.5" y="35.77588727874155" />
+      <point x="-446.4907581456637" y="-249.64866201652387" />
+      <point x="-446.4907581456637" y="-116.64866201652387" />
+      <point x="108.0" y="0.0" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.Lecture" target="com.naver.jpa.enrollment.domain.Subject" relationship="TO_ONE">
+      <point x="-20.208576919856284" y="-103.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.Lecture" target="com.naver.jpa.enrollment.domain.Professor" relationship="TO_ONE">
+      <point x="98.0" y="-95.5" />
+      <point x="57.02782974308502" y="-35.98199534985724" />
+      <point x="-72.5" y="21.725924781391598" />
+    </edge>
+    <edge source="com.naver.jpa.enrollment.domain.ForeignerProfessor" target="com.naver.jpa.enrollment.domain.Address" relationship="TO_ONE">
+      <point x="-67.61703060535613" y="-59.0" />
+      <point x="482.8888351835426" y="206.66666666666669" />
+      <point x="642.8888351835425" y="206.66666666666669" />
+      <point x="642.8888351835425" y="193.4225196753555" />
+      <point x="894.888835183543" y="193.4225196753555" />
+      <point x="0.0" y="48.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="1.0" showDependencies="true" x="230.5" y="38.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Inner Classes</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
