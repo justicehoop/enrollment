@@ -17,55 +17,57 @@ import com.naver.jpa.enrollment.domain.Professor;
 @NoArgsConstructor
 @Data
 public class ProfessorJoinRequest {
-  private NationalType nationalType;
-  private String userId;
-  private String name;
-  private String email;
-  private String mobile;
-  private AddressDto address;
-  private Gender gender;
+    private NationalType nationalType;
+    private String userId;
+    private String name;
+    private String email;
+    private String mobile;
+    private AddressDto address;
+    private Gender gender;
 
-  private String identificationNumber;
+    private String identificationNumber;
 
-  private String passportNumber;
-  private String countryCode;
-  private AddressDto homeAddress;
+    private String passportNumber;
+    private String countryCode;
+    private AddressDto homeAddress;
 
-  public boolean isDomestic() {
-    return nationalType == NationalType.DOMESTIC;
-  }
-
-  public Professor toProfessor() {
-    if (isDomestic()) {
-      return toDomesticProfessor();
+    public boolean isDomestic() {
+        return nationalType == NationalType.DOMESTIC;
     }
 
-    return toForeignerProfessor();
-  }
 
-  private Professor toDomesticProfessor() {
-    return DomesticProfessor.builder()
-      .userId(userId)
-      .name(name)
-      .email(email)
-      .mobile(mobile)
-      .address(Address.of(address.getCity(), address.getStreet(), address.getAddressDetail(), address.getZipcode()))
-      .gender(gender)
-      .identificationNumber(identificationNumber)
-      .build();
-  }
 
-  private Professor toForeignerProfessor() {
-    return ForeignerProfessor.builder()
-      .userId(userId)
-      .name(name)
-      .email(email)
-      .mobile(mobile)
-      .address(Address.of(address.getCity(), address.getStreet(), address.getAddressDetail(), address.getZipcode()))
-      .gender(gender)
-      .passportNumber(passportNumber)
-      .homeAddress(homeAddress.toAddress())
-      .countryCode(countryCode)
-      .build();
-  }
+    public Professor toProfessor() {
+        if (isDomestic()) {
+            return toDomesticProfessor();
+        }
+
+        return toForeignerProfessor();
+    }
+
+    private Professor toDomesticProfessor() {
+        return DomesticProfessor.builder()
+                .userId(userId)
+                .name(name)
+                .email(email)
+                .mobile(mobile)
+                .address(Address.of(address.getCity(), address.getStreet(), address.getAddressDetail(), address.getZipcode()))
+                .gender(gender)
+                .identificationNumber(identificationNumber)
+                .build();
+    }
+
+    private Professor toForeignerProfessor() {
+        return ForeignerProfessor.builder()
+                .userId(userId)
+                .name(name)
+                .email(email)
+                .mobile(mobile)
+                .address(Address.of(address.getCity(), address.getStreet(), address.getAddressDetail(), address.getZipcode()))
+                .gender(gender)
+                .passportNumber(passportNumber)
+                .homeAddress(homeAddress.toAddress())
+                .countryCode(countryCode)
+                .build();
+    }
 }

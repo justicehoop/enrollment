@@ -40,7 +40,7 @@ public class DomesticProfessorResponse extends ProfessorResponse {
       DomesticProfessor domesticProfessor = (DomesticProfessor)professor;
       DomesticProfessorResponse response = new DomesticProfessorResponse();
       response.setIdentificationNumber(domesticProfessor.getIdentificationNumber());
-      return null;
+      return response;
     }
 
     @Override

@@ -13,25 +13,41 @@ import com.naver.jpa.enrollment.domain.QSubject;
 import com.naver.jpa.enrollment.domain.Subject;
 import com.naver.jpa.enrollment.dto.SubjectSearchRequest;
 
+import java.util.Optional;
+
 public class SubjectRepositoryImpl extends QuerydslRepositorySupport implements SubjectRepositoryCustom {
 
-  private final QSubject subject = QSubject.subject;
+    private final QSubject subject = QSubject.subject;
 
-  public SubjectRepositoryImpl() {
-    super(Subject.class);
-  }
+    public SubjectRepositoryImpl() {
+        super(Subject.class);
+    }
 
-  @Override
-  public Page<Subject> findAll(SubjectSearchRequest subjectSearchRequest, Pageable pageable) {
-    JPQLQuery<Subject> jpqlQuery = from(subject)
-      .where(getSearchCondition())
-      .fetchJoin();
-    return new PageImpl<>(jpqlQuery.fetch(), pageable, jpqlQuery.fetchCount());
-  }
+    @Override
+    public Page<Subject> findAll(SubjectSearchRequest subjectSearchRequest, Pageable pageable) {
+        JPQLQuery<Subject> jpqlQuery = from(subject)
+                .where(getSearchCondition(subjectSearchRequest))
+                .fetchJoin();
+        return new PageImpl<>(jpqlQuery.fetch(), pageable, jpqlQuery.fetchCount());
+    }
 
-  private Predicate getSearchCondition() {
-    BooleanBuilder builder = new BooleanBuilder();
+    private Predicate getSearchCondition(SubjectSearchRequest subjectSearchRequest) {
+        BooleanBuilder builder = new BooleanBuilder();
+        if (subjectSearchRequest.hasName()) {
+            builder.and(subject.name.like(subjectSearchRequest.getName() + "%"));
+        }
 
-    return builder.getValue();
-  }
+        if (subjectSearchRequest.hasDescription()) {
+            builder.and(subject.description.like(subjectSearchRequest.getDescription() + "%"));
+        }
+
+        return builder.getValue();
+    }
+
+    @Override
+    public Optional<Subject> findByName(String name) {
+        return Optional.ofNullable(from(subject)
+                .where(subject.name.eq(name))
+                .fetchOne());
+    }
 }

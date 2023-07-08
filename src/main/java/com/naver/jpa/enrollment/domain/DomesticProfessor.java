@@ -30,6 +30,14 @@ public class DomesticProfessor extends Professor {
     this.identificationNumber = identificationNumber;
   }
 
+  public Professor edit(String email, String mobile, Address address, Gender gender,
+                           String identificationNumber
+  ) {
+    super.edit(email, mobile, address, gender);
+    this.identificationNumber = identificationNumber;
+    return this;
+  }
+
   @Override
   public NationalType getNationalType() {
     return NationalType.DOMESTIC;

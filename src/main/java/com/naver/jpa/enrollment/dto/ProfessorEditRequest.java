@@ -1,12 +1,12 @@
 package com.naver.jpa.enrollment.dto;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.*;
 
 import com.naver.jpa.enrollment.code.Gender;
 import com.naver.jpa.enrollment.code.NationalType;
 
+@Builder
+@NoArgsConstructor
 @Getter
 @AllArgsConstructor(access = AccessLevel.PACKAGE)
 public class ProfessorEditRequest {

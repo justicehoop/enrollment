@@ -1,16 +1,12 @@
 package com.naver.jpa.enrollment.dto;
 
+import lombok.*;
 import org.springframework.stereotype.Component;
-
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 import com.naver.jpa.enrollment.code.Gender;
 import com.naver.jpa.enrollment.domain.Professor;
 
+@Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor(access = AccessLevel.PROTECTED)

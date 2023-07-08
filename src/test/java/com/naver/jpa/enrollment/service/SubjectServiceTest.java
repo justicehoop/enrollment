@@ -13,18 +13,15 @@ import com.naver.jpa.enrollment.repository.StudentRepository;
 @Controller
 public class SubjectServiceTest {
 
-
   @Mock
   private StudentRepository studentRepository;
   @InjectMocks
   private StudentService studentService;
 
+
+
+  @Test
   public void testCreate() {
-    studentService.create(StudentCreateRequest
-      .builder()
-
-      .build());
   }
-
 
 }

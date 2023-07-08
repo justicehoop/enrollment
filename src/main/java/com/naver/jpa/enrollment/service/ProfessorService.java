@@ -1,5 +1,6 @@
 package com.naver.jpa.enrollment.service;
 
+import com.naver.jpa.enrollment.domain.DomesticProfessor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,42 +17,45 @@ import com.naver.jpa.enrollment.repository.ProfessorRepository;
 @RequiredArgsConstructor
 @Transactional
 @Service
-public class ProfessorService {
-  private final ProfessorRepository professorRepository;
-  private final ProfessorResponseFactoryResolver professorResponseFactoryResolver;
+public class ProfessorService implements ProfessorResolver {
+    private final ProfessorRepository professorRepository;
+    private final ProfessorResponseFactoryResolver professorResponseFactoryResolver;
+    private final ProfessorValidator professorValidator;
 
-  private final ProfessorValidator professorValidator;
+    public ProfessorResponse join(ProfessorJoinRequest professorJoinRequest) {
+        professorValidator.validate(professorJoinRequest);
 
-  public ProfessorResponse join(ProfessorJoinRequest professorJoinRequest) {
-    professorValidator.validate(professorJoinRequest);
-
-    Professor professor = professorJoinRequest.toProfessor();
-    return convertToResponse(professorRepository.save(professor));
-  }
-
-  public ProfessorResponse edit(Long id, ProfessorEditRequest professorEditRequest) {
-    Professor savedProfessor = findProfessor(id);
-
-    savedProfessor.edit(professorEditRequest.getEmail(), professorEditRequest.getMobile(), professorEditRequest.getAddress().toAddress(), professorEditRequest.getGender());
-    if (savedProfessor instanceof ForeignerProfessor) {
-      ((ForeignerProfessor) savedProfessor).edit(professorEditRequest.getPassportNumber(), professorEditRequest.getHomeAddress().toAddress());
+        Professor professor = professorJoinRequest.toProfessor();
+        return convertToResponse(professorRepository.save(professor));
     }
-    return convertToResponse(professorRepository.save(savedProfessor));
-  }
 
-  @Transactional(readOnly = true)
-  public ProfessorResponse getOne(Long id) {
-    Professor professor = findProfessor(id);
-    return convertToResponse(professor);
-  }
+    public ProfessorResponse edit(Long id, ProfessorEditRequest professorEditRequest) {
+        Professor savedProfessor = findProfessor(id);
 
-  private ProfessorResponse convertToResponse(Professor professor) {
-    return professorResponseFactoryResolver.resolve(professor).assignProfessor(professor);
-  }
+        if (savedProfessor instanceof ForeignerProfessor) {
+            ((ForeignerProfessor) savedProfessor).edit(professorEditRequest.getEmail(), professorEditRequest.getMobile(), professorEditRequest.getAddress().toAddress(), professorEditRequest.getGender(), professorEditRequest.getPassportNumber(), professorEditRequest.getHomeAddress().toAddress());
+        }
+        if (savedProfessor instanceof DomesticProfessor) {
+            ((DomesticProfessor) savedProfessor).edit(professorEditRequest.getEmail(), professorEditRequest.getMobile(), professorEditRequest.getAddress().toAddress(), professorEditRequest.getGender(), professorEditRequest.getIdentificationNumber());
+        }
+        return convertToResponse(professorRepository.save(savedProfessor));
+    }
+
+    @Transactional(readOnly = true)
+    public ProfessorResponse getOne(Long id) {
+        Professor professor = findProfessor(id);
+        return convertToResponse(professor);
+    }
+
+    private ProfessorResponse convertToResponse(Professor professor) {
+        return professorResponseFactoryResolver.resolve(professor)
+                .assignProfessor(professor);
+    }
 
 
-  private Professor findProfessor(Long id) {
-    return professorRepository.findById(id)
-      .orElseThrow(() -> new ResourceNotFoundException(String.format("Professor does not exist(id:%s)", id)));
-  }
+    @Override
+    public Professor findProfessor(Long id) {
+        return professorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("Professor does not exist(id:%s)", id)));
+    }
 }

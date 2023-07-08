@@ -1,11 +1,13 @@
 package com.naver.jpa.enrollment.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import com.naver.jpa.enrollment.domain.Address;
 
+@AllArgsConstructor(staticName = "of")
 @Data
 @NoArgsConstructor
 @Getter

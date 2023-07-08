@@ -53,7 +53,7 @@ public abstract class Professor {
   @OneToMany(mappedBy = "professor")
   private Set<Lecture> lectures = new HashSet<>();
 
-  public Professor edit(String email, String mobile, Address address, Gender gender) {
+  protected Professor edit(String email, String mobile, Address address, Gender gender) {
     this.email = email;
     this.mobile = mobile;
     this.address = address;
