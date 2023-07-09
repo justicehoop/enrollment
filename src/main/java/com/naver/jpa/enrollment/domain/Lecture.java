@@ -30,32 +30,52 @@ import lombok.Setter;
 @Setter(AccessLevel.PACKAGE)
 @Entity
 public class Lecture {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  private String lectureName;
-  @JoinColumn(name = "subject_no")
-  @OneToOne(fetch = FetchType.LAZY)
-  private Subject subject;
-  @JoinColumn(name = "professor_no")
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  private Professor professor;
-  @Column(length = 3)
-  private Integer fixedNumber;
-  @Column(length = 10)
-  @Enumerated(EnumType.STRING)
-  private DayOfWeek dayOfWeek;
-  @Column(nullable = false, length = 5)
-  private String startHourMin;
-  @Column(nullable = false, length = 5)
-  private String endHourMin;
-  @Column(nullable = false, length = 3)
-  private Integer lectureHourOfDay;
-  @Column(nullable = false, length = 3)
-  private Integer lectureDays;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String lectureName;
+    @JoinColumn(name = "subject_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    private Subject subject;
+    @JoinColumn(name = "professor_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Professor professor;
 
-  public boolean isExceed(long registeredNumber) {
-    return fixedNumber < registeredNumber;
-  }
+    @JoinColumn(name = "class_room_id")
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private ClassRoom classRoom;
 
+    @Column(length = 3)
+    private Integer fixedNumber;
+    @Column(length = 10)
+    @Enumerated(EnumType.STRING)
+    private DayOfWeek dayOfWeek;
+    @Column(nullable = false, length = 5)
+    private String startHourMin;
+    @Column(nullable = false, length = 5)
+    private String endHourMin;
+    @Column(nullable = false, length = 3)
+    private Integer lectureHourOfDay;
+    @Column(nullable = false, length = 3)
+    private Integer lectureDays;
+
+
+    public boolean isExceed(long registeredNumber) {
+        return fixedNumber < registeredNumber;
+    }
+
+    public Lecture edit(String lectureName,
+                        Integer lectureDays,
+                        Integer lectureHourOfDay,
+                        Integer fixedNumber,
+                        Professor professor,
+                        Subject subject) {
+        this.lectureName = lectureName;
+        this.lectureDays = lectureDays;
+        this.lectureHourOfDay = lectureHourOfDay;
+        this.fixedNumber = fixedNumber;
+        this.professor = professor;
+        this.subject = subject;
+        return this;
+    }
 }

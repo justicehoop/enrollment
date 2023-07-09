@@ -1,22 +1,21 @@
 package com.naver.jpa.enrollment.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.List;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
-
+import com.naver.jpa.enrollment.IntegrationTestSupport;
 import com.naver.jpa.enrollment.code.Gender;
 import com.naver.jpa.enrollment.domain.Address;
 import com.naver.jpa.enrollment.domain.DomesticProfessor;
 import com.naver.jpa.enrollment.domain.ForeignerProfessor;
 import com.naver.jpa.enrollment.domain.Professor;
 import com.naver.jpa.enrollment.fixture.EntityCreator;
-import com.naver.jpa.enrollment.support.IntegrationTestSupport;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @Slf4j
 @RequiredArgsConstructor

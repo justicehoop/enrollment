@@ -25,7 +25,7 @@ import com.naver.jpa.enrollment.repository.StudentRepository;
 @AllArgsConstructor
 @Transactional
 @Service
-public class StudentService {
+public class StudentService implements StudentResolver {
 
     private final StudentRepository studentRepository;
     private final LockerRepository lockerRepository;
@@ -69,7 +69,8 @@ public class StudentService {
                 .collect(Collectors.toList()), pageable, page.getTotalElements());
     }
 
-    private Student findOne(Long id) {
+    @Override
+    public Student findOne(Long id) {
         return studentRepository.findOne(id)
                 .orElseThrow(() -> new ResourceNotFoundException(""));
     }

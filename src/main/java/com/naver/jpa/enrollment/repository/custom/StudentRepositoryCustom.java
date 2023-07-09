@@ -1,4 +1,4 @@
-package com.naver.jpa.enrollment.repository;
+package com.naver.jpa.enrollment.repository.custom;
 
 import java.util.Optional;
 

@@ -9,10 +9,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.naver.jpa.enrollment.domain.Student;
 import com.naver.jpa.enrollment.dto.StudentCreateRequest;
 import com.naver.jpa.enrollment.dto.StudentEditRequest;
-import com.naver.jpa.enrollment.fixture.StudentEntityFixture;
+import com.naver.jpa.enrollment.fixture.StudentCreator;
 import com.naver.jpa.enrollment.repository.StudentRepository;
 
 @ExtendWith(MockitoExtension.class)
@@ -27,8 +26,8 @@ public class StudentValidateTest {
   public void testValidateWhenCreate_should_be_throw_IllegalArgumentException_when_userId_was_duplicated() {
 
     //Given
-    StudentCreateRequest createRequest = StudentEntityFixture.makeCreateRequest("userId");
-    given(studentRepository.findByUserId(createRequest.getUserId())).willReturn(StudentEntityFixture.makeStudent(createRequest.getUserId(), "test@email.com"));
+    StudentCreateRequest createRequest = StudentCreator.makeCreateRequest("userId");
+    given(studentRepository.findByUserId(createRequest.getUserId())).willReturn(StudentCreator.makeStudent(createRequest.getUserId(), "test@email.com"));
 
 
     //When
@@ -42,8 +41,8 @@ public class StudentValidateTest {
   @Test
   public void testValidateWhenCreate_should_be_throw_IllegalArgumentException() {
     //Given
-    StudentEditRequest studentEditRequest = StudentEntityFixture.makeEditRequest("test","test@email.com");
-    given(studentRepository.findByEmail(studentEditRequest.getEmail())).willReturn(StudentEntityFixture.makeStudent("test", studentEditRequest.getEmail()));
+    StudentEditRequest studentEditRequest = StudentCreator.makeEditRequest("test","test@email.com");
+    given(studentRepository.findByEmail(studentEditRequest.getEmail())).willReturn(StudentCreator.makeStudent("test", studentEditRequest.getEmail()));
 
     assertThrows(IllegalArgumentException.class,()-> {
       studentValidator.validateWhenEdit(studentEditRequest, null);

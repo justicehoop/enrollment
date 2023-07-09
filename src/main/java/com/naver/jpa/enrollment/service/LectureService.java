@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import com.naver.jpa.enrollment.domain.Professor;
 import com.naver.jpa.enrollment.domain.Subject;
 import com.naver.jpa.enrollment.dto.LectureRequest;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -19,10 +20,11 @@ import com.naver.jpa.enrollment.domain.Lecture;
 import com.naver.jpa.enrollment.dto.LectureSearchRequest;
 import com.naver.jpa.enrollment.repository.LectureRepository;
 
+@Slf4j
 @Transactional
 @Service
 @RequiredArgsConstructor
-public class LectureService {
+public class LectureService implements LectureResolver {
 
     private final LectureRepository lectureRepository;
     private final SubjectResolver subjectResolver;
@@ -43,6 +45,17 @@ public class LectureService {
         return LectureResponse.from(lectureRepository.save(lecture));
     }
 
+    public LectureResponse edit(Long id, LectureRequest lectureRequest) {
+        Lecture savedLecture = this.findOne(id);
+        Professor professor = professorResolver.findProfessor(lectureRequest.getProfessorId());
+        Subject subject = subjectResolver.findOne(lectureRequest.getSubjectId());
+        return LectureResponse.from(
+                lectureRepository.save(savedLecture.edit(lectureRequest.getLectureName(), lectureRequest.getLectureDays(),
+                        lectureRequest.getLectureHourOfDay(), lectureRequest.getFixedNumber(),
+                        professor, subject))
+        );
+    }
+
 
     @Transactional(readOnly = true)
     public Page<LectureResponse> getAll(LectureSearchRequest lectureSearchRequest, Pageable pageable) {
@@ -59,9 +72,10 @@ public class LectureService {
         return LectureResponse.from(findOne(id));
     }
 
-    private Lecture findOne(Long id) {
+    @Override
+    public Lecture findOne(Long id) {
         return lectureRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException(String.format("student(id:%d) does not exist", id)));
+                .orElseThrow(() -> new ResourceNotFoundException(String.format("lecture(id:%d) does not exist", id)));
     }
 
     @Service

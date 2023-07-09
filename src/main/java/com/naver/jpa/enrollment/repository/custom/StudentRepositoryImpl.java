@@ -1,4 +1,4 @@
-package com.naver.jpa.enrollment.repository.impl;
+package com.naver.jpa.enrollment.repository.custom;
 
 import java.util.Optional;
 
@@ -14,7 +14,6 @@ import com.querydsl.jpa.JPQLQuery;
 import com.naver.jpa.enrollment.domain.QStudent;
 import com.naver.jpa.enrollment.domain.Student;
 import com.naver.jpa.enrollment.dto.StudentSearchRequest;
-import com.naver.jpa.enrollment.repository.StudentRepositoryCustom;
 
 public class StudentRepositoryImpl extends QuerydslRepositorySupport implements StudentRepositoryCustom {
   private final QStudent student = QStudent.student;

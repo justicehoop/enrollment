@@ -4,7 +4,7 @@ import com.naver.jpa.enrollment.domain.Student;
 import com.naver.jpa.enrollment.dto.StudentCreateRequest;
 import com.naver.jpa.enrollment.dto.StudentEditRequest;
 
-public class StudentEntityFixture {
+public abstract class StudentCreator {
 
     public static StudentCreateRequest makeCreateRequest(String userId) {
       return StudentCreateRequest

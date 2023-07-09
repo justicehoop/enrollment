@@ -11,16 +11,18 @@ import com.naver.jpa.enrollment.domain.Student;
 @Builder
 @AllArgsConstructor
 public class StudentResponse {
-  private String name;
-  private String email;
-  private String dayOfBirth;
+    private Long id;
+    private String name;
+    private String email;
+    private String dayOfBirth;
 
-  public static StudentResponse from(Student student) {
-    return StudentResponse.builder()
-      .name(student.getName())
-      .email(student.getEmail())
-      .dayOfBirth(student.getDayOfBirth())
-      .build();
+    public static StudentResponse from(Student student) {
+        return StudentResponse.builder()
+                .id(student.getId())
+                .name(student.getName())
+                .email(student.getEmail())
+                .dayOfBirth(student.getDayOfBirth())
+                .build();
 
-  }
+    }
 }

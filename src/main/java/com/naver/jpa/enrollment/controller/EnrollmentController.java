@@ -14,7 +14,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import com.naver.jpa.enrollment.dto.EnrollmentResponse;
-import com.naver.jpa.enrollment.repository.impl.EnrollmentSearchRequest;
+import com.naver.jpa.enrollment.repository.custom.EnrollmentSearchRequest;
 import com.naver.jpa.enrollment.service.EnrollmentService;
 
 @Slf4j

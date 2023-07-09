@@ -1,19 +1,17 @@
 package com.naver.jpa.enrollment.repository;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import java.util.Optional;
-
-import javax.transaction.Transactional;
-
+import com.naver.jpa.enrollment.IntegrationTestSupport;
+import com.naver.jpa.enrollment.domain.Locker;
+import com.naver.jpa.enrollment.domain.Student;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import lombok.extern.slf4j.Slf4j;
+import javax.transaction.Transactional;
+import java.util.Optional;
 
-import com.naver.jpa.enrollment.domain.Locker;
-import com.naver.jpa.enrollment.domain.Student;
-import com.naver.jpa.enrollment.support.IntegrationTestSupport;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Transactional
 @Slf4j

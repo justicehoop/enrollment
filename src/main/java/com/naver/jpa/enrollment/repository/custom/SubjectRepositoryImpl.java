@@ -1,4 +1,4 @@
-package com.naver.jpa.enrollment.repository;
+package com.naver.jpa.enrollment.repository.custom;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;

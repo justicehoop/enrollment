@@ -1,4 +1,4 @@
-package com.naver.jpa.enrollment.repository.impl;
+package com.naver.jpa.enrollment.repository.custom;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -12,7 +12,6 @@ import com.querydsl.jpa.JPQLQuery;
 import com.naver.jpa.enrollment.domain.Lecture;
 import com.naver.jpa.enrollment.domain.QLecture;
 import com.naver.jpa.enrollment.dto.LectureSearchRequest;
-import com.naver.jpa.enrollment.repository.LectureRepositoryCustom;
 
 public class LectureRepositoryImpl extends QuerydslRepositorySupport implements LectureRepositoryCustom {
   private final QLecture lecture = QLecture.lecture;

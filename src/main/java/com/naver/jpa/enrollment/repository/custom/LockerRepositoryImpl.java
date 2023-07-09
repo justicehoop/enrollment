@@ -1,8 +1,7 @@
-package com.naver.jpa.enrollment.repository.impl;
+package com.naver.jpa.enrollment.repository.custom;
 
 import com.naver.jpa.enrollment.domain.Locker;
 import com.naver.jpa.enrollment.dto.LockerSearchRequest;
-import com.naver.jpa.enrollment.repository.LockerRepositoryCustom;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
